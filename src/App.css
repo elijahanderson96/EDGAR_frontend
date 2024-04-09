@@ -13,6 +13,52 @@
   }
 }
 
+body {
+  background-color: #1e1e1e; /* Dark background for the entire app */
+  color: #ffffff; /* Light text color */
+  font-family: 'Arial', sans-serif; /* Example font */
+  margin: 0; /* Remove default margin */
+}
+
+.App {
+  text-align: center;
+  /* Remove any additional background color settings if they conflict with the dark theme */
+}
+
+.App-header {
+  background-color: #282c34; /* Adjust if needed to fit the dark theme */
+  /* ... rest of the styles ... */
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+  /* ... rest of the styles ... */
+}
+
+.App-link {
+  color: #61dafb; /* Adjust if needed */
+  /* ... rest of the styles ... */
+}
+
+
+.container {
+  background-color: #2a2a2a;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+/* Animations */
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -36,3 +82,46 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  background-color: #1e1e1e;
+  color: #ffffff;
+  font-family: 'Arial', sans-serif;
+}
+
+.container {
+  background-color: #2a2a2a;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+#root {
+  background-color: #1e1e1e;
+  color: #ffffff;
+  font-family: 'Arial', sans-serif;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+p, h1, h2, h3, h4, h5, h6, a, button {
+  color: #ffffff;
+}
+
+a {
+  color: #61dafb;
+}
+
+button {
+  background-color: #282c34;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #3a3f4b;
+}
+
