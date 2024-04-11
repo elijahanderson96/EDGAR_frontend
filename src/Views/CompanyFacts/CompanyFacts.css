@@ -1,0 +1,10 @@
+.company-facts {
+    padding-left: 2%;
+}
+
+.search-container {
+    position: relative;
+    z-index: 1;
+    background-color: #222;
+    padding: 10px;
+}

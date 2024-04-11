@@ -1,12 +1,28 @@
-// src/components/SearchBar.js
-import React, { useState } from 'react';
-import './SearchBar.css';
+import React, { useState, useCallback } from 'react';
+import debounce from 'lodash/debounce';
+import axios from 'axios';
+import './SearchBar.css'
 
 const SearchBar = ({ onSearch }) => {
     const [searchTerm, setSearchTerm] = useState('');
 
-    const handleSearch = () => {
-        onSearch(searchTerm);
+    const handleSearch = useCallback(
+        debounce(async () => {
+            try {
+                const response = await axios.get('http://localhost:8000/company_facts/search', {
+                    params: { term: searchTerm },
+                });
+                onSearch(response.data);
+            } catch (error) {
+                console.error('Error searching:', error);
+            }
+        }, 300),
+        [searchTerm, onSearch]
+    );
+
+    const handleChange = (e) => {
+        setSearchTerm(e.target.value);
+        handleSearch();
     };
 
     return (
@@ -15,9 +31,8 @@ const SearchBar = ({ onSearch }) => {
                 type="text"
                 placeholder="Search..."
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={handleChange}
             />
-            <button onClick={handleSearch}>Search</button>
         </div>
     );
 };
