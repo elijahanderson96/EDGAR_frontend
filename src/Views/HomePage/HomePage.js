@@ -1,6 +1,6 @@
 // src/views/Home.js
 import React from 'react';
-import Header from '../../Components/Headers/AppHeader';
+import Header from '../../Components/Headers/Header';
 import SearchBar from '../..//Components/SearchBar/SearchBar';
 import Card from '../..//Components/Cards/Card';
 

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import './App.css';
 import HomePage from "./Views/HomePage/HomePage";
-import Header from './Components/Headers/AppHeader';
+import Header from './Components/Headers/Header';
 import Login from './Components/Auth/Login';
 import ProtectedRoute from './Components/Auth/ProtectedRoute';
-import './App.css';
+import SidePanel from './Components/SidePanel/SidePanel';
+import CompanyFacts from "./Views/CompanyFacts/CompanyFacts";
 
 
 function App() {
@@ -18,12 +20,34 @@ function App() {
         <Router>
             <Routes>
                 <Route path="/login" element={<Login onLogin={handleLogin} />} />
-                <Route path="/" element={
-                    <ProtectedRoute>
-                        <Header />
-                        <HomePage />
-                    </ProtectedRoute>
-                } />
+                <Route
+                    path="/"
+                    element={
+                        <ProtectedRoute>
+                            <div className="app-container">
+                                <Header />
+                                <div className="main-content">
+                                    <SidePanel />
+                                    <HomePage />
+                                </div>
+                            </div>
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/company-facts"
+                    element={
+                        <ProtectedRoute>
+                            <div className="app-container">
+                                <Header />
+                                <div className="main-content">
+                                    <SidePanel />
+                                    <CompanyFacts />
+                                </div>
+                            </div>
+                        </ProtectedRoute>
+                    }
+                />
             </Routes>
         </Router>
     );

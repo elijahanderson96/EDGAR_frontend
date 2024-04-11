@@ -4,10 +4,10 @@ import './Header.css';
 
 const Header = () => {
     return (
-        <header className="header">
+        <header className="app-header">
             <div className="logo">
                 {/* Add your logo or application name */}
-                <h1>Your App Name</h1>
+                {/*<h1>Your App Name</h1>*/}
             </div>
             <nav className="navigation">
                 <ul>

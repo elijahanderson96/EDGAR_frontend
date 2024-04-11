@@ -1,0 +1,50 @@
+.side-panel {
+    width: 250px;
+    background-color: #1f1f1f;
+    border-right: 1px solid #333;
+    color: #fff;
+    overflow-y: auto;
+}
+
+.data-source-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.data-source-list li {
+    padding: 10px 20px;
+    border-bottom: 1px solid #333;
+}
+
+.data-source-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.toggle-icon {
+    font-size: 14px;
+    transition: transform 0.3s ease-in-out;
+    color: #fff;
+}
+
+.toggle-icon.open {
+    transform: rotate(90deg);
+}
+
+.data-entry-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    margin-left: 20px;
+}
+
+.data-entry-list li {
+    padding: 5px 0;
+    font-size: 14px;
+}
