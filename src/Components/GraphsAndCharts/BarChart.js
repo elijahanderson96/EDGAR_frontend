@@ -1,27 +1,23 @@
-// src/Components/BarChart/BarChart.js
+// CompanyBarChart.js
 import React from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-import './BarChart.css';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
-const CompanyBarChart = () => {
-    // Replace this with your actual data fetching logic
-    const data = [
-        { name: 'Company 1', revenue: 1000000 },
-        { name: 'Company 2', revenue: 1500000 },
-        { name: 'Company 3', revenue: 2000000 },
-    ];
+const CompanyBarChart = ({ data, selectedSeries }) => {
+    const colors = ["#8884d8", "#82ca9d", "#ffc658"];  // Add more colors as needed
 
     return (
-        <div className="bar-chart">
-            <BarChart width={500} height={300} data={data}>
+        <ResponsiveContainer width="100%" height={300} >
+            <BarChart data={data} margin={{ top: 20, right: 30, left: 55, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
+                <XAxis dataKey="filing_date" />
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="revenue" fill="#8884d8" />
+                {selectedSeries.map((key, index) => (
+                    <Bar key={key} dataKey={key} fill={colors[index % colors.length]} />
+                ))}
             </BarChart>
-        </div>
+        </ResponsiveContainer>
     );
 };
 

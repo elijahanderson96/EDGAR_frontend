@@ -1,10 +1,93 @@
 .company-facts {
     padding-left: 2%;
+    position: relative;
+    width: 80%
+}
+.data-series-select {
+    width: 100%;
+    max-width: 400px;
+    padding: 8px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    background-color: #333;
+    font-size: 16px;
+    color: #fff;
+    outline: none;
+    transition: border-color 0.3s ease;
 }
 
-.search-container {
-    position: relative;
-    z-index: 1;
-    background-color: #222;
-    padding: 10px;
+.data-series-select:focus {
+    border-color: #4a90e2;
+}
+
+.data-series-select option {
+    padding: 8px;
+    background-color: #333;
+    color: #fff;
+}
+
+.data-series-select option:hover {
+    background-color: #444;
+}
+
+.data-series-select option:checked {
+    background-color: #4a90e2;
+    color: #fff;
+}
+
+.data-series-select option:checked:hover {
+    background-color: #3c7bd1;
+}
+
+.charts {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.chart-card {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.chart-card:last-child {
+    margin-right: 0;
+}
+
+.charts-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.chart-tabs {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.chart-tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #333;
+    color: #fff;
+    border-radius: 4px 4px 0 0;
+    margin-right: 10px;
+}
+
+.chart-tab.active {
+    background-color: #555;
+}
+
+.chart-content {
+    margin-left: 3%;
+    width: 100%;
+    max-width: 80%;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
 }

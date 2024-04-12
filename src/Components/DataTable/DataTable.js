@@ -1,54 +1,61 @@
-// src/Components/DataTable/DataTable.js
-import React from 'react';
-import { useTable } from 'react-table';
-import './DataTable.css';
+import React, { useState, useEffect } from 'react';
+import { AgGridReact } from 'ag-grid-react';
+import '@ag-grid-community/styles/ag-grid.css';
+import '@ag-grid-community/styles/ag-theme-alpine.css';
 
-const DataTable = () => {
-    // Replace this with your actual data fetching logic
-    const data = [
-        { id: 1, name: 'Company 1', revenue: 1000000 },
-        { id: 2, name: 'Company 2', revenue: 1500000 },
-        { id: 3, name: 'Company 3', revenue: 2000000 },
-    ];
+const DataTable = ({ data, onSelectionChange }) => {
+    const [columnDefs, setColumnDefs] = useState([]);
+    const [rowData, setRowData] = useState([]);
 
-    const columns = [
-        { Header: 'ID', accessor: 'id' },
-        { Header: 'Name', accessor: 'name' },
-        { Header: 'Revenue', accessor: 'revenue' },
-    ];
+    useEffect(() => {
+        if (data) {
+            const columns = Object.keys(data[0]).map(key => ({
+                headerName: key,
+                field: key,
+                filter: 'agSetColumnFilter',
+                filterParams: {
+                    values: (params) => {
+                        const uniqueValues = new Set(params.success(data.map(row => row[key])));
+                        return [...uniqueValues];
+                    },
+                },
+                sortable: true,
+                resizable: true,
+            }));
+            setColumnDefs(columns);
+            setRowData(data);
+        }
+    }, [data]);
 
-    const {
-        getTableProps,
-        getTableBodyProps,
-        headerGroups,
-        rows,
-        prepareRow,
-    } = useTable({ columns, data });
+    const onGridReady = (params) => {
+        params.api.sizeColumnsToFit();
+    };
+
+    const onSelectionChanged = () => {
+        const selectedRows = gridRef.current.api.getSelectedRows();
+        onSelectionChange(selectedRows);
+    };
+
+    const gridRef = React.useRef(null);
 
     return (
-        <table {...getTableProps()} className="data-table">
-            <thead>
-            {headerGroups.map((headerGroup) => (
-                <tr {...headerGroup.getHeaderGroupProps()}>
-                    {headerGroup.headers.map((column) => (
-                        <th {...column.getHeaderProps()}>{column.render('Header')}</th>
-                    ))}
-                </tr>
-            ))}
-            </thead>
-            <tbody {...getTableBodyProps()}>
-            {rows.map((row) => {
-                prepareRow(row);
-                return (
-                    <tr {...row.getRowProps()}>
-                        {row.cells.map((cell) => (
-                            <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-                        ))}
-                    </tr>
-                );
-            })}
-            </tbody>
-        </table>
+        <div className="ag-theme-alpine-dark" style={{ height: '400px', width: '100%' }}>
+            <AgGridReact
+                ref={gridRef}
+                columnDefs={columnDefs}
+                rowData={rowData}
+                defaultColDef={{
+                    flex: 1,
+                    minWidth: 150,
+                    filter: true,
+                    sortable: true,
+                    resizable: true,
+                }}
+                rowSelection="multiple"
+                onGridReady={onGridReady}
+                onSelectionChanged={onSelectionChanged}
+            />
+        </div>
     );
 };
 
